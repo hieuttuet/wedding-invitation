@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hero from './components/Hero';
 import OurStory from './components/OurStory';
 import Details from './components/Details';
@@ -8,16 +8,19 @@ import Guestbook from './components/Guestbook';
 import Envelope from './components/Envelope';
 import AudioPlayer from './components/AudioPlayer';
 import FallingPetals from './components/FallingPetals';
+import LoadingScreen from './components/LoadingScreen';
 import { useLanguage } from './context/LanguageContext';
 
 import InviteMessage from './components/InviteMessage';
 
 function App() {
   const { lang, toggleLanguage, t } = useLanguage();
+  const [loadingDone, setLoadingDone] = useState(false);
 
   return (
     <div className="app-container">
-      {/* Global Effects */}
+      {/* Loading Screen — shown first */}
+      {!loadingDone && <LoadingScreen onComplete={() => setLoadingDone(true)} />}
       <Envelope />
       <FallingPetals />
       <AudioPlayer />
