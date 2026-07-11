@@ -1,0 +1,254 @@
+import React, { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
+import { ChevronLeft, ChevronRight, X, Download } from 'lucide-react';
+
+const Gallery = () => {
+  const { t } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Dynamically import all images in the image folder
+  const imageModules = import.meta.glob('../image/*.jpg', { eager: true });
+  const images = Object.values(imageModules)
+    .map((mod) => mod.default)
+    .filter(src => !src.includes('qr_') && !src.includes('50x75 1')); // Exclude QR codes and Hero image
+
+  if (images.length === 0) return null;
+
+  const handlePrev = () => {
+    setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  const openLightbox = () => {
+    setLightboxOpen(true);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    document.body.style.overflow = 'auto';
+  };
+
+  return (
+    <section className="section animate-fade-in" style={{ backgroundColor: '#ffffff', paddingTop: '4rem', paddingBottom: '4rem' }}>
+      
+      {/* Cursive Title */}
+      <h2 style={{ 
+        fontFamily: "'Great Vibes', cursive", 
+        fontSize: '3.5rem', 
+        color: '#e2b3a3',
+        marginBottom: '2rem',
+        fontWeight: 'normal',
+        textAlign: 'center'
+      }}>
+        Gallery
+      </h2>
+
+      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 1rem' }}>
+        
+        {/* Top Controls */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '1rem' }}>
+          <div style={{ 
+            backgroundColor: '#dcdcdc', 
+            padding: '0.5rem 1rem', 
+            borderRadius: '5px',
+            color: 'white',
+            fontWeight: 'bold',
+            fontFamily: 'var(--font-heading)'
+          }}>
+            {currentIndex + 1} / {images.length}
+          </div>
+          
+          <button 
+            onClick={openLightbox}
+            style={{ 
+              backgroundColor: '#b0b0b0', 
+              color: 'white',
+              border: 'none',
+              padding: '0.5rem 1rem', 
+              borderRadius: '5px',
+              cursor: 'pointer',
+              fontFamily: 'var(--font-heading)',
+              fontSize: '0.95rem'
+            }}
+          >
+            {t('gallery_more')}
+          </button>
+        </div>
+
+        {/* Main Slider */}
+        <div style={{ position: 'relative', width: '100%', height: '60vh', minHeight: '400px', backgroundColor: '#f5f5f5', borderRadius: '5px', overflow: 'hidden' }}>
+          <img 
+            src={images[currentIndex]} 
+            alt={`Gallery ${currentIndex + 1}`}
+            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+          />
+
+          <button 
+            onClick={handlePrev}
+            style={{
+              position: 'absolute',
+              left: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'rgba(0,0,0,0.3)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+          >
+            <ChevronLeft size={30} />
+          </button>
+          
+          <button 
+            onClick={handleNext}
+            style={{
+              position: 'absolute',
+              right: '10px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: 'rgba(0,0,0,0.3)',
+              color: 'white',
+              border: 'none',
+              borderRadius: '50%',
+              width: '40px',
+              height: '40px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer'
+            }}
+          >
+            <ChevronRight size={30} />
+          </button>
+        </div>
+
+        {/* Thumbnail Strip */}
+        <div style={{ 
+          display: 'flex', 
+          gap: '10px', 
+          marginTop: '1.5rem', 
+          overflowX: 'auto', 
+          paddingBottom: '10px',
+          WebkitOverflowScrolling: 'touch'
+        }}>
+          {images.map((src, idx) => (
+            <img 
+              key={idx}
+              src={src}
+              alt={`Thumb ${idx + 1}`}
+              onClick={() => setCurrentIndex(idx)}
+              style={{
+                height: '80px',
+                width: 'auto',
+                cursor: 'pointer',
+                opacity: currentIndex === idx ? 1 : 0.5,
+                border: currentIndex === idx ? '2px solid #333' : '2px solid transparent',
+                transition: 'all 0.3s ease'
+              }}
+            />
+          ))}
+        </div>
+
+        {/* Pagination Dots */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '1.5rem', flexWrap: 'wrap' }}>
+          {images.map((_, idx) => (
+            <div 
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                backgroundColor: currentIndex === idx ? '#e2b3a3' : '#ddd',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s ease'
+              }}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Fullscreen Lightbox */}
+      {lightboxOpen && (
+        <div style={{
+          position: 'fixed',
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.95)',
+          zIndex: 1000,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <button 
+            onClick={closeLightbox}
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              zIndex: 1001
+            }}
+          >
+            <X size={40} />
+          </button>
+          
+          <a 
+            href={images[currentIndex]}
+            download
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '80px',
+              background: 'none',
+              border: 'none',
+              color: 'white',
+              cursor: 'pointer',
+              zIndex: 1001,
+              textDecoration: 'none'
+            }}
+            title="Download"
+          >
+            <Download size={35} />
+          </a>
+
+          <button 
+            onClick={handlePrev}
+            style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 1001 }}
+          >
+            <ChevronLeft size={60} />
+          </button>
+
+          <img 
+            src={images[currentIndex]} 
+            alt="Fullscreen" 
+            style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }}
+          />
+
+          <button 
+            onClick={handleNext}
+            style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 1001 }}
+          >
+            <ChevronRight size={60} />
+          </button>
+        </div>
+      )}
+
+    </section>
+  );
+};
+
+export default Gallery;
