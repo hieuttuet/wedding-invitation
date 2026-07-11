@@ -9,6 +9,12 @@ const Gallery = () => {
   const [hasInteracted, setHasInteracted] = useState(false);
   const thumbnailRefs = useRef([]);
 
+  // Swipe state
+  const swipeStartX = useRef(null);
+  const [swipeDelta, setSwipeDelta] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
+  const SWIPE_THRESHOLD = 50; // px to trigger image change
+
   useEffect(() => {
     if (!hasInteracted) return;
     if (thumbnailRefs.current[currentIndex]) {
@@ -36,6 +42,27 @@ const Gallery = () => {
   const handleNext = () => {
     setHasInteracted(true);
     setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
+  // ─── Swipe handlers ───
+  const onSwipeStart = (clientX) => {
+    swipeStartX.current = clientX;
+    setIsSwiping(true);
+    setSwipeDelta(0);
+  };
+
+  const onSwipeMove = (clientX) => {
+    if (swipeStartX.current === null) return;
+    setSwipeDelta(clientX - swipeStartX.current);
+  };
+
+  const onSwipeEnd = () => {
+    if (swipeStartX.current === null) return;
+    if (swipeDelta < -SWIPE_THRESHOLD) handleNext();
+    else if (swipeDelta > SWIPE_THRESHOLD) handlePrev();
+    swipeStartX.current = null;
+    setIsSwiping(false);
+    setSwipeDelta(0);
   };
 
   const openLightbox = () => {
@@ -95,12 +122,28 @@ const Gallery = () => {
           </button>
         </div>
 
-        {/* Main Slider */}
-        <div style={{ position: 'relative', width: '100%', height: '60vh', minHeight: '400px', backgroundColor: '#f5f5f5', borderRadius: '5px', overflow: 'hidden' }}>
-          <img 
-            src={images[currentIndex]} 
+        {/* Main Slider — swipe enabled */}
+        <div
+          style={{ position: 'relative', width: '100%', height: '60vh', minHeight: '400px', backgroundColor: '#f5f5f5', borderRadius: '5px', overflow: 'hidden', cursor: isSwiping ? 'grabbing' : 'grab', touchAction: 'pan-y' }}
+          onTouchStart={(e) => onSwipeStart(e.touches[0].clientX)}
+          onTouchMove={(e) => onSwipeMove(e.touches[0].clientX)}
+          onTouchEnd={onSwipeEnd}
+          onMouseDown={(e) => onSwipeStart(e.clientX)}
+          onMouseMove={(e) => { if (swipeStartX.current !== null) onSwipeMove(e.clientX); }}
+          onMouseUp={onSwipeEnd}
+          onMouseLeave={onSwipeEnd}
+        >
+          <img
+            src={images[currentIndex]}
             alt={`Gallery ${currentIndex + 1}`}
-            style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            draggable={false}
+            style={{
+              width: '100%', height: '100%', objectFit: 'contain',
+              transform: `translateX(${isSwiping ? swipeDelta * 0.3 : 0}px)`,
+              transition: isSwiping ? 'none' : 'transform 0.3s ease',
+              userSelect: 'none',
+              pointerEvents: 'none'
+            }}
           />
 
           <button 
@@ -203,15 +246,26 @@ const Gallery = () => {
 
       {/* Fullscreen Lightbox */}
       {lightboxOpen && (
-        <div style={{
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          backgroundColor: 'rgba(0,0,0,0.95)',
-          zIndex: 99999,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
+        <div
+          style={{
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.95)',
+            zIndex: 99999,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: isSwiping ? 'grabbing' : 'grab',
+            touchAction: 'none',
+          }}
+          onTouchStart={(e) => onSwipeStart(e.touches[0].clientX)}
+          onTouchMove={(e) => onSwipeMove(e.touches[0].clientX)}
+          onTouchEnd={onSwipeEnd}
+          onMouseDown={(e) => onSwipeStart(e.clientX)}
+          onMouseMove={(e) => { if (swipeStartX.current !== null) onSwipeMove(e.clientX); }}
+          onMouseUp={onSwipeEnd}
+          onMouseLeave={onSwipeEnd}
+        >
           <button 
             onClick={closeLightbox}
             style={{
@@ -257,7 +311,14 @@ const Gallery = () => {
           <img 
             src={images[currentIndex]} 
             alt="Fullscreen" 
-            style={{ maxWidth: '90%', maxHeight: '90%', objectFit: 'contain' }}
+            draggable={false}
+            style={{
+              maxWidth: '90%', maxHeight: '90%', objectFit: 'contain',
+              transform: `translateX(${isSwiping ? swipeDelta * 0.2 : 0}px)`,
+              transition: isSwiping ? 'none' : 'transform 0.3s ease',
+              userSelect: 'none',
+              pointerEvents: 'none'
+            }}
           />
 
           <button 
