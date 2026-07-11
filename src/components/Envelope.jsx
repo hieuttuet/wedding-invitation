@@ -15,9 +15,19 @@ const Envelope = () => {
 
   const OPEN_THRESHOLD = -80; // drag 80px up to trigger open
 
+  const musicStarted = useRef(false);
+
+  const startMusicEarly = () => {
+    if (!musicStarted.current) {
+      musicStarted.current = true;
+      window.dispatchEvent(new Event('startMusic'));
+    }
+  };
+
   const handleOpen = () => {
     if (isOpen) return;
     setIsOpen(true);
+    // Music may already be playing from first touch, but dispatch anyway
     window.dispatchEvent(new Event('startMusic'));
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     setTimeout(() => {
@@ -28,6 +38,7 @@ const Envelope = () => {
 
   // ─── Touch handlers ───
   const onTouchStart = (e) => {
+    startMusicEarly(); // Start music on first touch — satisfies browser autoplay policy
     startYRef.current = e.touches[0].clientY;
     setIsDragging(true);
   };
@@ -52,6 +63,7 @@ const Envelope = () => {
 
   // ─── Mouse handlers (desktop) ───
   const onMouseDown = (e) => {
+    startMusicEarly(); // Start music on first mousedown
     startYRef.current = e.clientY;
     setIsDragging(true);
   };
