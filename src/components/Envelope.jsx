@@ -15,6 +15,16 @@ const Envelope = () => {
 
   const OPEN_THRESHOLD = -80; // drag 80px up to trigger open
 
+  // Lock page scroll while envelope is covering everything
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+      document.documentElement.style.overflow = '';
+    };
+  }, []);
+
   const musicStarted = useRef(false);
 
   const startMusicEarly = () => {
@@ -29,7 +39,10 @@ const Envelope = () => {
     setIsOpen(true);
     // Music may already be playing from first touch, but dispatch anyway
     window.dispatchEvent(new Event('startMusic'));
-    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    // Unlock scroll and instantly jump to top BEFORE envelope animates away
+    document.body.style.overflow = '';
+    document.documentElement.style.overflow = '';
+    window.scrollTo(0, 0); // instant, not smooth — avoids race conditions
     setTimeout(() => {
       const el = document.getElementById('envelope-container');
       if (el) el.style.display = 'none';
