@@ -8,22 +8,44 @@ const Guestbook = () => {
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxU2D97mMXllvdq0Eo6KrR992EMcYk9AsH1kt0OfhUl1cHJSak90yiiP7V7hqrLxx-8/exec';
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log({ name, message });
-    setSubmitted(true);
-    setTimeout(() => {
-      setName('');
-      setMessage('');
-      setSubmitted(false);
-    }, 5000);
+    setIsSubmitting(true);
+
+    const formData = new FormData();
+    formData.append('Name', name);
+    formData.append('Message', message);
+
+    try {
+      await fetch(SCRIPT_URL, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors' // Google Apps Script requires this for cross-origin POST from frontend
+      });
+      
+      setSubmitted(true);
+      setTimeout(() => {
+        setName('');
+        setMessage('');
+        setSubmitted(false);
+      }, 5000);
+    } catch (error) {
+      console.error('Error submitting form', error);
+      alert('Có lỗi xảy ra, vui lòng thử lại sau.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section className="section animate-fade-in" style={{ backgroundColor: 'var(--moss-light)' }}>
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
-        fontSize: '3.5rem', 
+        fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
         color: '#e2b3a3',
         marginBottom: '1rem',
         fontWeight: 'normal',
@@ -83,14 +105,15 @@ const Guestbook = () => {
 
         <button 
           type="submit"
+          disabled={isSubmitting || submitted}
           style={{
             padding: '1rem',
-            backgroundColor: 'var(--moss-green)',
+            backgroundColor: (isSubmitting || submitted) ? '#a0b080' : 'var(--moss-green)',
             color: 'white',
             border: 'none',
             borderRadius: '5px',
             fontSize: '1.1rem',
-            cursor: 'pointer',
+            cursor: (isSubmitting || submitted) ? 'not-allowed' : 'pointer',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
@@ -99,7 +122,7 @@ const Guestbook = () => {
             transition: 'background-color 0.3s'
           }}
         >
-          {submitted ? t('sent_message') : <>{t('send_button')} <Send size={20} /></>}
+          {isSubmitting ? 'Đang gửi...' : (submitted ? t('sent_message') : <>{t('send_button')} <Send size={20} /></>)}
         </button>
       </form>
     </section>

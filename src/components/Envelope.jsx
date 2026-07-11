@@ -69,28 +69,28 @@ const Envelope = () => {
       <div style={{
         position: 'absolute',
         bottom: '8%',
-        width: '90%',
+        width: '85%',
         maxWidth: '380px',
         textAlign: 'center',
-        padding: '2rem 1.5rem',
-        background: 'rgba(20, 20, 20, 0.65)',
+        padding: 'clamp(1.2rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem)',
+        background: 'rgba(20, 20, 20, 0.15)',
         backdropFilter: 'blur(15px)',
         WebkitBackdropFilter: 'blur(15px)',
-        border: '1px solid rgba(255, 255, 255, 0.1)',
+        border: '1px solid rgba(255, 255, 255, 0.05)',
         borderRadius: '20px',
         boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '1rem'
+        gap: 'clamp(0.5rem, 2vw, 1rem)'
       }}>
         <div>
-          <p style={{ letterSpacing: '4px', fontSize: '0.85rem', color: '#e2b3a3', textTransform: 'uppercase', marginBottom: '0.5rem', fontWeight: '500' }}>
+          <p style={{ letterSpacing: '4px', fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: '#e2b3a3', textTransform: 'uppercase', marginBottom: '0.5rem', fontWeight: '500' }}>
             Wedding Invitation
           </p>
           <h2 style={{ 
             fontFamily: "'Great Vibes', cursive", 
-            fontSize: '3rem', 
+            fontSize: 'clamp(2rem, 7vw, 3rem)', 
             color: 'white',
             fontWeight: 'normal',
             lineHeight: '1.2'
@@ -102,12 +102,12 @@ const Envelope = () => {
         <button 
           onClick={handleOpen}
           style={{
-            padding: '1rem 2.5rem',
+            padding: 'clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2.5rem)',
             backgroundColor: '#e2b3a3',
             color: '#1a1a1a',
             border: 'none',
             borderRadius: '30px',
-            fontSize: '1rem',
+            fontSize: 'clamp(0.9rem, 3vw, 1rem)',
             fontWeight: '600',
             cursor: 'pointer',
             display: 'flex',
@@ -115,7 +115,7 @@ const Envelope = () => {
             justifyContent: 'center',
             gap: '0.8rem',
             transition: 'all 0.3s',
-            marginTop: '1rem',
+            marginTop: 'clamp(0.5rem, 2vw, 1rem)',
             boxShadow: '0 5px 20px rgba(226, 179, 163, 0.4)'
           }}
           onMouseOver={(e) => {

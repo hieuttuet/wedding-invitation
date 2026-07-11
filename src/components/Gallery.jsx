@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ChevronLeft, ChevronRight, X, Download } from 'lucide-react';
 
@@ -6,9 +6,20 @@ const Gallery = () => {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const thumbnailRefs = useRef([]);
 
-  // Dynamically import all images in the image folder
-  const imageModules = import.meta.glob('../image/*.jpg', { eager: true });
+  useEffect(() => {
+    if (thumbnailRefs.current[currentIndex]) {
+      thumbnailRefs.current[currentIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest',
+        inline: 'center'
+      });
+    }
+  }, [currentIndex]);
+
+  // Dynamically import all images in the image folder (supporting multiple formats)
+  const imageModules = import.meta.glob('../image/*.{jpg,jpeg,png,webp}', { eager: true });
   const images = Object.values(imageModules)
     .map((mod) => mod.default)
     .filter(src => !src.includes('qr_') && !src.includes('50x75 1')); // Exclude QR codes and Hero image
@@ -39,7 +50,7 @@ const Gallery = () => {
       {/* Cursive Title */}
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
-        fontSize: '3.5rem', 
+        fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
         color: '#e2b3a3',
         marginBottom: '2rem',
         fontWeight: 'normal',
@@ -144,6 +155,7 @@ const Gallery = () => {
         }}>
           {images.map((src, idx) => (
             <img 
+              ref={(el) => (thumbnailRefs.current[idx] = el)}
               key={idx}
               src={src}
               alt={`Thumb ${idx + 1}`}

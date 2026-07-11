@@ -19,7 +19,7 @@ const Details = () => {
         
         <h2 style={{ 
           fontFamily: "'Great Vibes', cursive", 
-          fontSize: '3.5rem', 
+          fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
           color: '#e2b3a3',
           marginBottom: '3rem',
           fontWeight: 'normal',
@@ -28,11 +28,11 @@ const Details = () => {
           Sự Kiện Cưới
         </h2>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
           
           {/* Lễ Vu Quy (Nhà Gái) */}
           <div style={{ 
-            padding: '2.5rem 2rem', 
+            padding: '2rem 1.5rem', 
             border: '2px solid rgba(74, 93, 35, 0.2)', 
             borderRadius: '15px',
             backgroundColor: '#fafafa',
@@ -92,7 +92,7 @@ const Details = () => {
 
           {/* Lễ Thành Hôn (Nhà Trai) */}
           <div style={{ 
-            padding: '2.5rem 2rem', 
+            padding: '2rem 1.5rem', 
             border: '2px solid rgba(74, 93, 35, 0.2)', 
             borderRadius: '15px',
             backgroundColor: '#fafafa',

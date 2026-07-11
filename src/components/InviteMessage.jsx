@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import brideImg from '../image/bride.jpg';
-import groomImg from '../image/groom.jpg';
+import brideImg from '../image/bride.webp';
+import groomImg from '../image/groom.webp';
 
 const InviteMessage = () => {
   const { t } = useLanguage();
@@ -50,7 +50,7 @@ const InviteMessage = () => {
         }}>
           
           {/* Groom */}
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', maxWidth: '300px', flex: '1 1 250px' }}>
             <div style={{
               width: '200px',
               height: '250px',
@@ -65,13 +65,13 @@ const InviteMessage = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
             </div>
-            <p style={{ fontSize: '1rem', color: '#888', marginBottom: '0.2rem' }}>{t('groom_parents')}</p>
+            <p style={{ fontSize: '1rem', color: '#888', marginBottom: '0.2rem', lineHeight: '1.4', whiteSpace: 'pre-line' }}>{t('groom_parents')}</p>
             <p style={{ fontSize: '1.1rem', color: '#666', marginBottom: '0.5rem' }}>{t('groom_title')}</p>
             <h3 style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)' }}>JIN YEONG</h3>
           </div>
 
           {/* Bride */}
-          <div style={{ textAlign: 'center' }}>
+          <div style={{ textAlign: 'center', maxWidth: '300px', flex: '1 1 250px' }}>
             <div style={{
               width: '200px',
               height: '250px',
@@ -86,7 +86,7 @@ const InviteMessage = () => {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
               />
             </div>
-            <p style={{ fontSize: '1rem', color: '#888', marginBottom: '0.2rem' }}>{t('bride_parents')}</p>
+            <p style={{ fontSize: '1rem', color: '#888', marginBottom: '0.2rem', lineHeight: '1.4', whiteSpace: 'pre-line' }}>{t('bride_parents')}</p>
             <p style={{ fontSize: '1.1rem', color: '#666', marginBottom: '0.5rem' }}>{t('bride_title')}</p>
             <h3 style={{ fontSize: '1.8rem', fontFamily: 'var(--font-heading)' }}>NGUYỄN HUỆ</h3>
           </div>

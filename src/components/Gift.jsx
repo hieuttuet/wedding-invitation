@@ -10,7 +10,7 @@ const Gift = () => {
     <section className="section animate-fade-in" style={{ backgroundColor: '#ffffff' }}>
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
-        fontSize: '3.5rem', 
+        fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
         color: '#e2b3a3',
         marginBottom: '1rem',
         fontWeight: 'normal',

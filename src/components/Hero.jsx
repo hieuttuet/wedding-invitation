@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-import bgImage from '../image/50x75 1.jpg';
+import bgImage from '../image/50x75 1.webp';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -80,7 +80,7 @@ const Hero = () => {
       <div style={{ textAlign: 'center', margin: '1rem 0' }}>
         <h1 style={{ 
           fontFamily: "'Great Vibes', cursive", 
-          fontSize: '4.5rem', 
+          fontSize: 'clamp(3rem, 10vw, 4.5rem)', 
           color: 'white', 
           textShadow: '2px 4px 8px rgba(0,0,0,0.6)', 
           fontWeight: 'normal',
@@ -103,25 +103,29 @@ const Hero = () => {
       {/* Countdown Timer */}
       <div style={{
         display: 'flex',
-        gap: '1rem',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        gap: '0.5rem',
         marginTop: '3rem',
-        fontFamily: 'var(--font-heading)'
+        fontFamily: 'var(--font-heading)',
+        width: '100%',
+        padding: '0 10px'
       }}>
-        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', minWidth: '80px' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{timeLeft.days}</div>
-          <div style={{ fontSize: '0.9rem', textTransform: 'uppercase' }}>{t('countdown_days')}</div>
+        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.days}</div>
+          <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_days')}</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', minWidth: '80px' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{timeLeft.hours}</div>
-          <div style={{ fontSize: '0.9rem', textTransform: 'uppercase' }}>{t('countdown_hours')}</div>
+        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.hours}</div>
+          <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_hours')}</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', minWidth: '80px' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{timeLeft.minutes}</div>
-          <div style={{ fontSize: '0.9rem', textTransform: 'uppercase' }}>{t('countdown_minutes')}</div>
+        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.minutes}</div>
+          <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_minutes')}</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', minWidth: '80px' }}>
-          <div style={{ fontSize: '2rem', fontWeight: 'bold' }}>{timeLeft.seconds}</div>
-          <div style={{ fontSize: '0.9rem', textTransform: 'uppercase' }}>{t('countdown_seconds')}</div>
+        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
+          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.seconds}</div>
+          <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_seconds')}</div>
         </div>
       </div>
     </section>
