@@ -197,7 +197,7 @@ const Gallery = () => {
           position: 'fixed',
           top: 0, left: 0, right: 0, bottom: 0,
           backgroundColor: 'rgba(0,0,0,0.95)',
-          zIndex: 1000,
+          zIndex: 99999,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
@@ -207,12 +207,12 @@ const Gallery = () => {
             style={{
               position: 'absolute',
               top: '20px',
-              right: '20px',
+              left: '20px', // Moved to left to avoid language switcher on the right
               background: 'none',
               border: 'none',
               color: 'white',
               cursor: 'pointer',
-              zIndex: 1001
+              zIndex: 100000
             }}
           >
             <X size={40} />
@@ -224,12 +224,12 @@ const Gallery = () => {
             style={{
               position: 'absolute',
               top: '20px',
-              right: '80px',
+              left: '80px', // Moved to left alongside X button
               background: 'none',
               border: 'none',
               color: 'white',
               cursor: 'pointer',
-              zIndex: 1001,
+              zIndex: 100000,
               textDecoration: 'none'
             }}
             title="Download"
@@ -239,7 +239,7 @@ const Gallery = () => {
 
           <button 
             onClick={handlePrev}
-            style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 1001 }}
+            style={{ position: 'absolute', left: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 100000 }}
           >
             <ChevronLeft size={60} />
           </button>
@@ -252,7 +252,7 @@ const Gallery = () => {
 
           <button 
             onClick={handleNext}
-            style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 1001 }}
+            style={{ position: 'absolute', right: '20px', top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', color: 'white', cursor: 'pointer', zIndex: 100000 }}
           >
             <ChevronRight size={60} />
           </button>

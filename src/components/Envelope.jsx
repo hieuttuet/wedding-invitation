@@ -13,6 +13,9 @@ const Envelope = () => {
     // Dispatch event to start music
     window.dispatchEvent(new Event('startMusic'));
     
+    // Fix: Force scroll to top when opening so user starts at the Hero section
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    
     // Remove envelope from DOM after animation
     setTimeout(() => {
       document.getElementById('envelope-container').style.display = 'none';
@@ -131,7 +134,7 @@ const Envelope = () => {
           }}
         >
           <MailOpen size={20} />
-          Open Invitation
+          {t('open_invitation')}
         </button>
       </div>
     </div>

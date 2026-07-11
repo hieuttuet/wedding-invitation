@@ -38,7 +38,7 @@ const Hero = () => {
       flexDirection: 'column',
       justifyContent: 'flex-end',
       alignItems: 'center',
-      paddingBottom: '8vh',
+      paddingBottom: '6vh',
       position: 'relative',
       overflow: 'hidden',
       color: 'white'
@@ -73,25 +73,25 @@ const Hero = () => {
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         zIndex: -1
       }} />
-      <h3 style={{ fontSize: '1.2rem', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase', color: 'white' }}>
+      <h3 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase', color: 'white' }}>
         {t('hero_title')}
       </h3>
 
-      <div style={{ textAlign: 'center', margin: '1rem 0' }}>
+      <div style={{ textAlign: 'center', margin: '1.5rem 0' }}>
         <h1 style={{
           fontFamily: "'Great Vibes', cursive",
-          fontSize: 'clamp(3rem, 10vw, 4.5rem)',
+          fontSize: 'clamp(3.5rem, 10vw, 5rem)',
           color: 'white',
           textShadow: '2px 4px 8px rgba(0,0,0,0.6)',
           fontWeight: 'normal',
-          lineHeight: '1.2'
+          lineHeight: '1.1'
         }}>
           Nguyễn Huệ<br />& Jin Yeong
         </h1>
       </div>
 
       <p style={{
-        fontSize: '1.5rem',
+        fontSize: 'clamp(1.4rem, 4vw, 1.8rem)',
         fontFamily: 'var(--font-heading)',
         marginTop: '1rem',
         borderBottom: '2px solid var(--gold)',
@@ -105,26 +105,26 @@ const Hero = () => {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        gap: '0.5rem',
-        marginTop: '3rem',
+        gap: '1rem',
+        marginTop: '2rem',
         fontFamily: 'var(--font-heading)',
         width: '100%',
         padding: '0 10px'
       }}>
-        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
-          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.days}</div>
+        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 70px', maxWidth: '100px' }}>
+          <div style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', fontWeight: 'bold' }}>{timeLeft.days}</div>
           <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_days')}</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
-          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.hours}</div>
+        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 70px', maxWidth: '100px' }}>
+          <div style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', fontWeight: 'bold' }}>{timeLeft.hours}</div>
           <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_hours')}</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
-          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.minutes}</div>
+        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 70px', maxWidth: '100px' }}>
+          <div style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', fontWeight: 'bold' }}>{timeLeft.minutes}</div>
           <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_minutes')}</div>
         </div>
-        <div style={{ textAlign: 'center', padding: '0.8rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 60px', maxWidth: '90px' }}>
-          <div style={{ fontSize: '1.8rem', fontWeight: 'bold' }}>{timeLeft.seconds}</div>
+        <div style={{ textAlign: 'center', padding: '1rem', background: 'rgba(255,255,255,0.2)', borderRadius: '10px', backdropFilter: 'blur(5px)', flex: '1 1 70px', maxWidth: '100px' }}>
+          <div style={{ fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', fontWeight: 'bold' }}>{timeLeft.seconds}</div>
           <div style={{ fontSize: '0.8rem', textTransform: 'uppercase' }}>{t('countdown_seconds')}</div>
         </div>
       </div>
