@@ -71,7 +71,7 @@ const Envelope = () => {
         zIndex: -1
       }} />
 
-      {/* Elegant Glassmorphism Open Invitation Card */}
+      {/* Transparent Open Invitation Card */}
       <div style={{
         position: 'absolute',
         bottom: '8%',
@@ -79,27 +79,23 @@ const Envelope = () => {
         maxWidth: '380px',
         textAlign: 'center',
         padding: 'clamp(1.2rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem)',
-        background: 'rgba(20, 20, 20, 0.15)',
-        backdropFilter: 'blur(15px)',
-        WebkitBackdropFilter: 'blur(15px)',
-        border: '1px solid rgba(255, 255, 255, 0.05)',
-        borderRadius: '20px',
-        boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+        background: 'transparent',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         gap: 'clamp(0.5rem, 2vw, 1rem)'
       }}>
         <div>
-          <p style={{ letterSpacing: '4px', fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: '#e2b3a3', textTransform: 'uppercase', marginBottom: '0.5rem', fontWeight: '500' }}>
+          <p style={{ letterSpacing: '5px', fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: '#d4af37', textTransform: 'uppercase', marginBottom: '0.8rem', fontWeight: '600', textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.3)' }}>
             {t('wedding_invitation')}
           </p>
           <h2 style={{ 
             fontFamily: "'Great Vibes', cursive", 
-            fontSize: 'clamp(2rem, 7vw, 3rem)', 
-            color: 'white',
+            fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
+            color: '#f5e6d0',
             fontWeight: 'normal',
-            lineHeight: '1.2'
+            lineHeight: '1.2',
+            textShadow: '2px 4px 12px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.15)'
           }}>
             Nguyễn Huệ<br/>& Jin Yeong
           </h2>
@@ -109,9 +105,9 @@ const Envelope = () => {
           onClick={handleOpen}
           style={{
             padding: 'clamp(0.8rem, 3vw, 1rem) clamp(1.5rem, 5vw, 2.5rem)',
-            backgroundColor: '#e2b3a3',
-            color: '#1a1a1a',
-            border: 'none',
+            background: 'linear-gradient(135deg, #d4af37, #f5e6c8, #d4af37)',
+            color: '#2a1f0e',
+            border: '1px solid rgba(212,175,55,0.4)',
             borderRadius: '30px',
             fontSize: 'clamp(0.9rem, 3vw, 1rem)',
             fontWeight: '600',
@@ -122,15 +118,16 @@ const Envelope = () => {
             gap: '0.8rem',
             transition: 'all 0.3s',
             marginTop: 'clamp(0.5rem, 2vw, 1rem)',
-            boxShadow: '0 5px 20px rgba(226, 179, 163, 0.4)'
+            boxShadow: '0 5px 25px rgba(212,175,55,0.3), inset 0 1px 0 rgba(255,255,255,0.3)',
+            letterSpacing: '1px'
           }}
           onMouseOver={(e) => {
             e.currentTarget.style.transform = 'scale(1.05)';
-            e.currentTarget.style.backgroundColor = 'white';
+            e.currentTarget.style.boxShadow = '0 8px 35px rgba(212,175,55,0.5), inset 0 1px 0 rgba(255,255,255,0.4)';
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.transform = 'scale(1)';
-            e.currentTarget.style.backgroundColor = '#e2b3a3';
+            e.currentTarget.style.boxShadow = '0 5px 25px rgba(212,175,55,0.3), inset 0 1px 0 rgba(255,255,255,0.3)';
           }}
         >
           <MailOpen size={20} />

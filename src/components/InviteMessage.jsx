@@ -14,7 +14,7 @@ const InviteMessage = () => {
         <h2 style={{ 
           fontFamily: "'Great Vibes', cursive, 'Playfair Display', serif", 
           fontSize: '3rem', 
-          color: '#e2b3a3', // Soft pinkish/gold color like in the image
+          color: '#d4af37',
           marginBottom: '3rem',
           fontWeight: 'normal'
         }}>

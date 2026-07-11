@@ -69,7 +69,7 @@ const Guestbook = () => {
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
         fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
-        color: '#e2b3a3',
+        color: '#d4af37',
         marginBottom: '1rem',
         fontWeight: 'normal',
         textAlign: 'center'
@@ -181,7 +181,7 @@ const Guestbook = () => {
                 backgroundColor: '#fafafa',
                 padding: '1rem',
                 borderRadius: '8px',
-                borderLeft: '4px solid #e2b3a3'
+                borderLeft: '4px solid #d4af37'
               }}>
                 <div style={{ fontWeight: '600', color: '#4a5d23', marginBottom: '0.3rem' }}>{msg.Name}</div>
                 <div style={{ color: '#555', lineHeight: '1.5', whiteSpace: 'pre-wrap' }}>{msg.Message}</div>

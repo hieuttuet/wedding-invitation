@@ -1,10 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { Heart } from 'lucide-react';
 
 import storyImg1 from '../image/15x21 1.jpg';
 import storyImg2 from '../image/15x21 2.jpg';
 import storyImg3 from '../image/15x21 3.jpg';
+
+const AnimatedText = ({ text }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <span ref={containerRef}>
+      {text.split(' ').map((word, i) => (
+        <span 
+          key={i} 
+          style={{ 
+            display: 'inline-block',
+            opacity: 0,
+            animation: isVisible ? `wordFlyIn 0.5s ease forwards ${i * 0.1}s` : 'none',
+            marginRight: '0.25em' 
+          }}
+        >
+          {word}
+        </span>
+      ))}
+    </span>
+  );
+};
 
 const OurStory = () => {
   const { t } = useLanguage();
@@ -35,7 +74,7 @@ const OurStory = () => {
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
         fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
-        color: '#e2b3a3',
+        color: '#d4af37',
         marginBottom: '3rem',
         fontWeight: 'normal',
         textAlign: 'center'
@@ -139,7 +178,9 @@ const OurStory = () => {
 
               <h3 style={{ color: 'var(--gold)', fontSize: 'clamp(0.9rem, 2.5vw, 1.2rem)', marginBottom: '0.5rem' }}>{event.date}</h3>
               <h4 style={{ fontSize: 'clamp(1.2rem, 3vw, 1.5rem)', marginBottom: '0.5rem' }}>{event.title}</h4>
-              <p style={{ color: '#666', lineHeight: 1.5, fontSize: 'clamp(0.85rem, 2.5vw, 1rem)' }}>{event.desc}</p>
+              <p style={{ color: '#666', lineHeight: 1.5, fontSize: 'clamp(0.85rem, 2.5vw, 1rem)' }}>
+                <AnimatedText text={event.desc} />
+              </p>
             </div>
           </div>
         ))}

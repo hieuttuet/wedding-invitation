@@ -11,7 +11,7 @@ const Gift = () => {
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
         fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
-        color: '#e2b3a3',
+        color: '#d4af37',
         marginBottom: '1rem',
         fontWeight: 'normal',
         textAlign: 'center'

@@ -6,9 +6,11 @@ const Gallery = () => {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
   const thumbnailRefs = useRef([]);
 
   useEffect(() => {
+    if (!hasInteracted) return;
     if (thumbnailRefs.current[currentIndex]) {
       thumbnailRefs.current[currentIndex].scrollIntoView({
         behavior: 'smooth',
@@ -16,7 +18,7 @@ const Gallery = () => {
         inline: 'center'
       });
     }
-  }, [currentIndex]);
+  }, [currentIndex, hasInteracted]);
 
   // Dynamically import all images in the image folder (supporting multiple formats)
   const imageModules = import.meta.glob('../image/*.{jpg,jpeg,png,webp}', { eager: true });
@@ -27,10 +29,12 @@ const Gallery = () => {
   if (images.length === 0) return null;
 
   const handlePrev = () => {
+    setHasInteracted(true);
     setCurrentIndex(prev => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
   const handleNext = () => {
+    setHasInteracted(true);
     setCurrentIndex(prev => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
@@ -51,7 +55,7 @@ const Gallery = () => {
       <h2 style={{ 
         fontFamily: "'Great Vibes', cursive", 
         fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
-        color: '#e2b3a3',
+        color: '#d4af37',
         marginBottom: '2rem',
         fontWeight: 'normal',
         textAlign: 'center'
@@ -159,7 +163,10 @@ const Gallery = () => {
               key={idx}
               src={src}
               alt={`Thumb ${idx + 1}`}
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => {
+                setHasInteracted(true);
+                setCurrentIndex(idx);
+              }}
               style={{
                 height: '80px',
                 width: 'auto',
@@ -177,12 +184,15 @@ const Gallery = () => {
           {images.map((_, idx) => (
             <div 
               key={idx}
-              onClick={() => setCurrentIndex(idx)}
+              onClick={() => {
+                setHasInteracted(true);
+                setCurrentIndex(idx);
+              }}
               style={{
                 width: '8px',
                 height: '8px',
                 borderRadius: '50%',
-                backgroundColor: currentIndex === idx ? '#e2b3a3' : '#ddd',
+                backgroundColor: currentIndex === idx ? '#d4af37' : '#ddd',
                 cursor: 'pointer',
                 transition: 'background-color 0.3s ease'
               }}

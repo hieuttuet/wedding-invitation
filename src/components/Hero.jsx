@@ -73,7 +73,7 @@ const Hero = () => {
         backgroundColor: 'rgba(0, 0, 0, 0.4)',
         zIndex: -1
       }} />
-      <h3 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase', color: 'white' }}>
+      <h3 style={{ fontSize: 'clamp(1.1rem, 3vw, 1.4rem)', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase', color: '#d4af37', textShadow: '0 2px 6px rgba(0,0,0,0.8)' }}>
         {t('hero_title')}
       </h3>
 
@@ -81,8 +81,8 @@ const Hero = () => {
         <h1 style={{
           fontFamily: "'Great Vibes', cursive",
           fontSize: 'clamp(3.5rem, 10vw, 5rem)',
-          color: 'white',
-          textShadow: '2px 4px 8px rgba(0,0,0,0.6)',
+          color: '#f5e6d0',
+          textShadow: '2px 4px 12px rgba(0,0,0,0.8), 0 0 25px rgba(212,175,55,0.15)',
           fontWeight: 'normal',
           lineHeight: '1.1'
         }}>

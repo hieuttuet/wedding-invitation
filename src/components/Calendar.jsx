@@ -31,7 +31,7 @@ const Calendar = () => {
       <h3 style={{ 
         fontFamily: "'Great Vibes', cursive", 
         fontSize: '3.5rem', 
-        color: '#e2b3a3',
+        color: '#d4af37',
         marginBottom: '3rem',
         fontWeight: 'normal'
       }}>
@@ -53,7 +53,7 @@ const Calendar = () => {
           color: '#333'
         }}>
           {t('days').map((day, idx) => (
-            <div key={idx} style={{ color: idx === 0 ? '#e2b3a3' : '#333' }}>{day}</div>
+            <div key={idx} style={{ color: idx === 0 ? '#d4af37' : '#333' }}>{day}</div>
           ))}
         </div>
 
@@ -77,7 +77,7 @@ const Calendar = () => {
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: isWeddingDay ? 'white' : (isSunday ? '#e2b3a3' : '#333'),
+                  color: isWeddingDay ? 'white' : (isSunday ? '#d4af37' : '#333'),
                   fontWeight: isWeddingDay ? 'bold' : 'normal',
                   fontSize: '1.1rem'
                 }}
@@ -94,7 +94,7 @@ const Calendar = () => {
                     alignItems: 'center',
                     animation: 'pulse 1.5s infinite ease-in-out'
                   }}>
-                    <Heart fill="#e2b3a3" color="#e2b3a3" size={45} style={{ opacity: 0.8 }} />
+                    <Heart fill="#d4af37" color="#d4af37" size={45} style={{ opacity: 0.8 }} />
                   </div>
                 )}
                 {day}

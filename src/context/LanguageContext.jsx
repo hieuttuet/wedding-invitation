@@ -25,7 +25,7 @@ export const translations = {
     sent_message: 'Đã gửi lời chúc ♥',
     footer_text: 'Rất hân hạnh được đón tiếp!',
     wedding_invitation: 'Wedding Invitation',
-    open_invitation: 'Mở Thiệp',
+    open_invitation: 'Open Invitation',
     bride_bank: 'Tài khoản Nhà Gái',
     groom_bank: 'Tài khoản Nhà Trai',
     invite_heading: 'Invite you',
