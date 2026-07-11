@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Send } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -9,8 +9,28 @@ const Guestbook = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [messagesList, setMessagesList] = useState([]);
+  const [isLoadingMessages, setIsLoadingMessages] = useState(true);
 
   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxU2D97mMXllvdq0Eo6KrR992EMcYk9AsH1kt0OfhUl1cHJSak90yiiP7V7hqrLxx-8/exec';
+
+  useEffect(() => {
+    fetchMessages();
+  }, []);
+
+  const fetchMessages = async () => {
+    try {
+      const response = await fetch(SCRIPT_URL);
+      const json = await response.json();
+      if (json.result === 'success') {
+        setMessagesList(json.data || []);
+      }
+    } catch (error) {
+      console.error('Error fetching messages', error);
+    } finally {
+      setIsLoadingMessages(false);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +46,9 @@ const Guestbook = () => {
         body: formData,
         mode: 'no-cors' // Google Apps Script requires this for cross-origin POST from frontend
       });
+      
+      // Update locally immediately
+      setMessagesList(prev => [{ Name: name, Message: message, Date: new Date().toISOString() }, ...prev]);
       
       setSubmitted(true);
       setTimeout(() => {
@@ -125,6 +148,49 @@ const Guestbook = () => {
           {isSubmitting ? 'Đang gửi...' : (submitted ? t('sent_message') : <>{t('send_button')} <Send size={20} /></>)}
         </button>
       </form>
+
+      {/* Messages List Container */}
+      <div style={{
+        maxWidth: '500px',
+        margin: '3rem auto 0',
+        backgroundColor: '#fff',
+        borderRadius: '10px',
+        padding: '1.5rem',
+        boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+        textAlign: 'left'
+      }}>
+        <h3 style={{ fontFamily: 'var(--font-heading)', color: '#333', marginBottom: '1rem', borderBottom: '1px solid #eee', paddingBottom: '0.5rem' }}>
+          {t('guestbook_list_title')} ({messagesList.length})
+        </h3>
+        
+        {isLoadingMessages ? (
+          <div style={{ textAlign: 'center', color: '#888', padding: '2rem 0' }}>{t('guestbook_loading')}</div>
+        ) : messagesList.length === 0 ? (
+          <div style={{ textAlign: 'center', color: '#888', padding: '2rem 0' }}>{t('guestbook_empty')}</div>
+        ) : (
+          <div style={{
+            maxHeight: '400px',
+            overflowY: 'auto',
+            paddingRight: '10px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '1rem'
+          }}>
+            {messagesList.map((msg, idx) => (
+              <div key={idx} style={{
+                backgroundColor: '#fafafa',
+                padding: '1rem',
+                borderRadius: '8px',
+                borderLeft: '4px solid #e2b3a3'
+              }}>
+                <div style={{ fontWeight: '600', color: '#4a5d23', marginBottom: '0.3rem' }}>{msg.Name}</div>
+                <div style={{ color: '#555', lineHeight: '1.5', whiteSpace: 'pre-wrap' }}>{msg.Message}</div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
     </section>
   );
 };

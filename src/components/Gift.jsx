@@ -19,7 +19,7 @@ const Gift = () => {
         Gift
       </h2>
       <p style={{ marginBottom: '3rem', color: '#666', maxWidth: '600px', margin: '0 auto 3rem auto', textAlign: 'center' }}>
-        Sự hiện diện của quý khách là món quà tuyệt vời nhất đối với chúng tôi. Nếu quý khách muốn gửi lời chúc mừng từ xa, có thể sử dụng mã QR dưới đây.
+        {t('gift_desc')}
       </p>
 
       <div style={{
@@ -47,9 +47,9 @@ const Gift = () => {
             style={{ width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem' }} 
           />
           <div style={{ textAlign: 'left', marginTop: '1rem' }}>
-            <p><strong>Ngân hàng:</strong> Vietcombank</p>
-            <p><strong>Số tài khoản:</strong> 1234567890</p>
-            <p><strong>Chủ tài khoản:</strong> JIN YEONG</p>
+            <p><strong>{t('bank_name')}</strong> Vietcombank</p>
+            <p><strong>{t('bank_account')}</strong> 1234567890</p>
+            <p><strong>{t('bank_owner')}</strong> JIN YEONG</p>
           </div>
         </div>
 
@@ -71,9 +71,9 @@ const Gift = () => {
             style={{ width: '100%', height: 'auto', borderRadius: '10px', marginBottom: '1rem' }} 
           />
           <div style={{ textAlign: 'left', marginTop: '1rem' }}>
-            <p><strong>Ngân hàng:</strong> MB Bank</p>
-            <p><strong>Số tài khoản:</strong> 0987654321</p>
-            <p><strong>Chủ tài khoản:</strong> NGUYEN THI HUE</p>
+            <p><strong>{t('bank_name')}</strong> MB Bank</p>
+            <p><strong>{t('bank_account')}</strong> 0987654321</p>
+            <p><strong>{t('bank_owner')}</strong> NGUYEN THI HUE</p>
           </div>
         </div>
       </div>

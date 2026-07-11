@@ -25,7 +25,7 @@ const Details = () => {
           fontWeight: 'normal',
           textAlign: 'center'
         }}>
-          Sự Kiện Cưới
+          {t('event_title')}
         </h2>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
@@ -44,23 +44,23 @@ const Details = () => {
             </div>
             
             <h3 style={{ fontSize: '1.8rem', color: 'var(--moss-green)', textAlign: 'center', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>
-              LỄ VU QUY
+              {t('event_vu_quy')}
             </h3>
-            <p style={{ textAlign: 'center', color: '#888', marginBottom: '2.5rem', fontWeight: 'bold', letterSpacing: '2px' }}>NHÀ GÁI</p>
+            <p style={{ textAlign: 'center', color: '#888', marginBottom: '2.5rem', fontWeight: 'bold', letterSpacing: '2px' }}>{t('event_nha_gai')}</p>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left', marginBottom: '2rem' }}>
               <Clock color="var(--moss-green)" size={24} style={{ marginTop: '2px' }} />
               <div>
                 <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#444' }}>17:00</p>
-                <p style={{ fontSize: '1rem', color: '#666' }}>Thứ Bảy - 01.08.2026</p>
+                <p style={{ fontSize: '1rem', color: '#666' }}>{t('event_vu_quy_time')}</p>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left' }}>
               <MapPin color="var(--moss-green)" size={24} style={{ marginTop: '2px' }} />
               <div>
-                <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#444', marginBottom: '0.3rem' }}>TƯ GIA NHÀ GÁI</p>
-                <p style={{ fontSize: '1rem', color: '#666', lineHeight: '1.4' }}>Thôn Đồng Phú, xã Thần Khê,<br/>tỉnh Hưng Yên</p>
+                <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#444', marginBottom: '0.3rem' }}>{t('event_vu_quy_location')}</p>
+                <p style={{ fontSize: '1rem', color: '#666', lineHeight: '1.4' }} dangerouslySetInnerHTML={{ __html: t('event_vu_quy_address') }}></p>
                 
                 <a
                   href="https://maps.google.com/?q=Thôn+Đồng+Phú,+xã+Thần+Khê,+tỉnh+Hưng+Yên"
@@ -104,23 +104,23 @@ const Details = () => {
             </div>
 
             <h3 style={{ fontSize: '1.8rem', color: 'var(--moss-green)', textAlign: 'center', marginBottom: '0.5rem', fontFamily: 'var(--font-heading)' }}>
-              LỄ THÀNH HÔN
+              {t('event_thanh_hon')}
             </h3>
-            <p style={{ textAlign: 'center', color: '#888', marginBottom: '2.5rem', fontWeight: 'bold', letterSpacing: '2px' }}>NHÀ TRAI</p>
+            <p style={{ textAlign: 'center', color: '#888', marginBottom: '2.5rem', fontWeight: 'bold', letterSpacing: '2px' }}>{t('event_nha_trai')}</p>
             
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left', marginBottom: '2rem' }}>
               <Clock color="var(--moss-green)" size={24} style={{ marginTop: '2px' }} />
               <div>
                 <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#444' }}>12:30</p>
-                <p style={{ fontSize: '1rem', color: '#666' }}>Chủ Nhật - 02.08.2026</p>
+                <p style={{ fontSize: '1rem', color: '#666' }}>{t('event_thanh_hon_time')}</p>
               </div>
             </div>
 
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', textAlign: 'left' }}>
               <MapPin color="var(--moss-green)" size={24} style={{ marginTop: '2px' }} />
               <div>
-                <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#444', marginBottom: '0.3rem' }}>SHERATON WEST HOTEL</p>
-                <p style={{ fontSize: '1rem', color: '#666', lineHeight: '1.4' }}>36 Lê Đức Thọ, Từ Liêm,<br/>Hà Nội</p>
+                <p style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#444', marginBottom: '0.3rem' }}>{t('event_thanh_hon_location')}</p>
+                <p style={{ fontSize: '1rem', color: '#666', lineHeight: '1.4' }} dangerouslySetInnerHTML={{ __html: t('event_thanh_hon_address') }}></p>
                 
                 <a
                   href="https://maps.app.goo.gl/qHF1YoYYC4Z5RGFAA"

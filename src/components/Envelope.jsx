@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 import { MailOpen } from 'lucide-react';
 import bgImage from '../image/20x30.jpg';
 
+import { useLanguage } from '../context/LanguageContext';
+
 const Envelope = () => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -86,7 +89,7 @@ const Envelope = () => {
       }}>
         <div>
           <p style={{ letterSpacing: '4px', fontSize: 'clamp(0.7rem, 2.5vw, 0.85rem)', color: '#e2b3a3', textTransform: 'uppercase', marginBottom: '0.5rem', fontWeight: '500' }}>
-            Wedding Invitation
+            {t('wedding_invitation')}
           </p>
           <h2 style={{ 
             fontFamily: "'Great Vibes', cursive", 

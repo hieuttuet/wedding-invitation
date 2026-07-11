@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
-import bgImage from '../image/50x75 1.webp';
+import bgImage from '../image/TAN01317.webp';
 
 const Hero = () => {
   const { t } = useLanguage();
@@ -76,22 +76,22 @@ const Hero = () => {
       <h3 style={{ fontSize: '1.2rem', letterSpacing: '3px', marginBottom: '1rem', textTransform: 'uppercase', color: 'white' }}>
         {t('hero_title')}
       </h3>
-      
+
       <div style={{ textAlign: 'center', margin: '1rem 0' }}>
-        <h1 style={{ 
-          fontFamily: "'Great Vibes', cursive", 
-          fontSize: 'clamp(3rem, 10vw, 4.5rem)', 
-          color: 'white', 
-          textShadow: '2px 4px 8px rgba(0,0,0,0.6)', 
+        <h1 style={{
+          fontFamily: "'Great Vibes', cursive",
+          fontSize: 'clamp(3rem, 10vw, 4.5rem)',
+          color: 'white',
+          textShadow: '2px 4px 8px rgba(0,0,0,0.6)',
           fontWeight: 'normal',
           lineHeight: '1.2'
         }}>
           Nguyễn Huệ<br />& Jin Yeong
         </h1>
       </div>
-      
-      <p style={{ 
-        fontSize: '1.5rem', 
+
+      <p style={{
+        fontSize: '1.5rem',
         fontFamily: 'var(--font-heading)',
         marginTop: '1rem',
         borderBottom: '2px solid var(--gold)',
