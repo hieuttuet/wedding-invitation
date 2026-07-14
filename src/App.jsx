@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import Hero from './components/Hero';
-import OurStory from './components/OurStory';
 import Details from './components/Details';
 import Gallery from './components/Gallery';
-import Gift from './components/Gift';
 import Guestbook from './components/Guestbook';
 import Envelope from './components/Envelope';
 import AudioPlayer from './components/AudioPlayer';
@@ -14,7 +12,7 @@ import { useLanguage } from './context/LanguageContext';
 import InviteMessage from './components/InviteMessage';
 
 function App() {
-  const { lang, toggleLanguage, t } = useLanguage();
+  const { lang, t } = useLanguage();
   const [loadingDone, setLoadingDone] = useState(false);
 
   return (
@@ -24,35 +22,13 @@ function App() {
       <Envelope />
       <FallingPetals />
       <AudioPlayer />
-
-      {/* Language Toggle */}
-      <button 
-        onClick={toggleLanguage}
-        style={{
-          position: 'fixed',
-          top: '20px',
-          right: '20px',
-          zIndex: 999,
-          padding: '8px 15px',
-          backgroundColor: 'var(--moss-green)',
-          color: 'white',
-          border: 'none',
-          borderRadius: '20px',
-          cursor: 'pointer',
-          fontWeight: 'bold',
-          boxShadow: '0 2px 10px rgba(0,0,0,0.2)'
-        }}
-      >
-        {lang === 'vi' ? '🇰🇷 KR' : '🇻🇳 VN'}
-      </button>
+      <AudioPlayer />
 
       {/* Main Content */}
       <Hero />
       <InviteMessage />
-      <OurStory />
       <Details />
       <Gallery />
-      <Gift />
       <Guestbook />
       
       <footer style={{
