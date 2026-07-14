@@ -7,7 +7,7 @@ const InviteMessage = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="section animate-fade-in" style={{ backgroundColor: '#ffffff', padding: '6rem 1rem' }}>
+    <section className="section animate-fade-in" style={{ backgroundColor: '#ffffff', padding: '4rem 1rem 1rem 1rem' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center' }}>
         
         {/* Invite Heading */}

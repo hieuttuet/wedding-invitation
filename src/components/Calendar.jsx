@@ -20,7 +20,7 @@ const Calendar = () => {
   }
 
   return (
-    <div style={{ textAlign: 'center', marginTop: '4rem', marginBottom: '2rem' }}>
+    <div style={{ textAlign: 'center', marginTop: '1rem', marginBottom: '2rem' }}>
       <style>{`
         @keyframes pulse {
           0% { transform: translate(-50%, -50%) scale(1); }
