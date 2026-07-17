@@ -22,7 +22,6 @@ function App() {
       <Envelope />
       <FallingPetals />
       <AudioPlayer />
-      <AudioPlayer />
 
       {/* Main Content */}
       <Hero />
